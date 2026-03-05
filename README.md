@@ -5,25 +5,25 @@ Personal homelab project to develop my practical skills in Network setup, Firewa
 ## Description
 
 - Setup description (planned)   
-    -- Ubuntu Server with Wazuh SIEM collecting logs from an Win11 agent
-    -- Win11 client acting as a workstation
-    -- OpenBSD gateway with PF firewall rules
+    - Ubuntu Server with Wazuh SIEM collecting logs from an Win11 agent
+    - Win11 client acting as a workstation
+    - OpenBSD gateway with PF firewall rules
 
 
 - Scenarios descriptions (planned)
-    -- Brute force SSH on Ubuntu Server
-    -- Nmap scan on Ubuntu Server
-    -- RDP bruteforce attemp towards Win11
-    -- Malware sample from MalwareBazaar
-    -- Suspicious scheduled task creation
+    - Brute force SSH on Ubuntu Server
+    - Nmap scan on Ubuntu Server
+    - RDP bruteforce attemp towards Win11
+    - Malware sample from MalwareBazaar
+    - Suspicious scheduled task creation
 
 - Goal/s
-    -- Get familiar with SIEM workflow
-    -- Analyse logs firsthand with help of my other tools
-    -- Setup experience for future needs
+    - Get familiar with SIEM workflow
+    - Analyse logs firsthand with help of my other tools
+    - Setup experience for future needs
 
 - Planned 
-    -- create a Active Directory setup
+    - create a Active Directory setup
 
 # Author 
 Bogdan Ermakov

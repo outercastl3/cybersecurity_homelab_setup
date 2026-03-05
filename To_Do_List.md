@@ -8,11 +8,11 @@
 - [ ] Setup Routing
 - [ ] Install Wazuh on Ubuntu server
 - [ ] Install sysmon on Win11 VM
-- [ ] Create an Network diagramm
+- [ ] Create an Network diagram
 - [ ] Run and document scenarios
-    -- [ ] Bruteforce on SSH or RDP
-    -- [ ] Run malware sample on Win11 machine
-    -- [ ] Run Nmap scans
-    -- [ ] Create Suspicious scheduled task
+    - [ ] Bruteforce on SSH or RDP
+    - [ ] Run malware sample on Win11 machine
+    - [ ] Run Nmap scans
+    - [ ] Create Suspicious scheduled task
 
 
