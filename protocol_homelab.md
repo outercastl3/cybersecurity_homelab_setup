@@ -6,7 +6,7 @@ works as my detailed steps description and a small instruction for future refere
 - Ubuntu Server with apache and wazuh
 - OpenBSD 7.8 setup with pf files as main firewall
 
-### OpenBSD Setup (09.03.2026)
+### OpenBSD Setup (09.03.2026) - Replaced, kept for reference
 - Install OpenBSD and setup a singular root user
 - Setup 2 Network Adapters one set to NAT other one set to Internal Network
 ![Network Adapter 1](setup_files/network_adapter1.png)
@@ -61,6 +61,8 @@ works as my detailed steps description and a small instruction for future refere
 ![Network Settings Windows](setup_files/network_win11.png)
 - test connection by pinging the gateway and Internet(8.8.8.8 in this case)
 ![Test connectivity gateway](setup_files/ping_gateway.png)
+
+
 ![Test Connectivity to Internet](setup_files/ping_8.png)
 - The setup Works, now we try to Access Wazuh to check if wazuh set up correctly
 ![Wazuh Setup](setup_files/wazuh_setup.png)
@@ -76,3 +78,27 @@ works as my detailed steps description and a small instruction for future refere
 - For wazuh follow instructions on the local host website
 - Successful agent installation
 ![Wazuh Agent Setup](setup_files/wazuh_agent.png)
+
+### New gateway setup pfSense Community edition (10.03.2026)
+- I decided to replace OpenBSD with pfSense
+- Decision was based upon pfSense having more similarities to Enterprise environments and an easier log forwarding
+- Download pfSense Community edition off Netgate website
+- Setup pfSense similarly with 2 Network Adapters
+![Network Adapter1 pfSense](setup_files/network1_pfsense.png)
+![Network Adapter2 pfSense](setup_files/network2_pfsense.png)
+- Install the OS itself and choose WAN for interface em0 and LAN for interface em1
+- Reboot the VM
+![pfSense setup Screenshot](setup_files/setup_pfsense.png)
+- from Win11 access pfSense local website on 192.168.1.1
+- Change the default password in System -> User Manager -> Admin -> Change password
+- Setup of the OS is finished
+- Setup Log Forwarding
+    - go to Status -> System Logs -> Settings
+    - scroll down to Remote logging and enable it
+    - set 192.168.1.20 on port 514 for Remote log Server
+- On Ubuntu Server
+    - edit ossec.conf and add new remote listening
+    ![Ossec.conf](setup_files/ossec_conf_ubuntu.png)
+    - restart the service
+        - sudo systemctl restart wazuh-manager
+

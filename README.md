@@ -7,7 +7,7 @@ Personal homelab project to develop my practical skills in Network setup, Firewa
 - Setup description (planned)   
     - Ubuntu Server with Wazuh SIEM collecting logs from an Win11 agent
     - Win11 client acting as a workstation
-    - OpenBSD gateway with PF firewall rules
+    - pfSense(on FreeBSD basis) gateway with PF firewall rules
 
 
 - Scenarios descriptions (planned)
