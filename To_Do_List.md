@@ -5,10 +5,10 @@
 - [x] Setup the Ubuntu server VM
 - [x] Setup Win11 VM
 - [x] Setup OpenBSD VM
-- [ ] Setup Routing
-- [ ] Install Wazuh on Ubuntu server
-- [ ] Install sysmon on Win11 VM
-- [ ] Create an Network diagram
+- [x] Setup Routing
+- [x] Install Wazuh on Ubuntu server
+- [x] Install sysmon on Win11 VM
+- [x] Create an Network diagram
 - [ ] Run and document scenarios
     - [ ] Bruteforce on SSH or RDP
     - [ ] Run malware sample on Win11 machine

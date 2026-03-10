@@ -1,0 +1,11 @@
+network:  
+  ethernets: # specify we're configuring ethernet interface
+    enp0s3: # the name of the adapter we are configuring
+      dhcp4: no # disable automatic ip assignment
+      addresses: [192.168.1.20/24] # static ip assignment
+      routes: # we set default gateway
+        - to: default
+          via: 192.168.1.1
+      nameservers: # DNS servers where to resolve domain names
+        addresses: [8.8.8.8, 1.1.1.1]
+  version: 2
