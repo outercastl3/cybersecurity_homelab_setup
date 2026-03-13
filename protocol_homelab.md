@@ -92,13 +92,19 @@ works as my detailed steps description and a small instruction for future refere
 - from Win11 access pfSense local website on 192.168.1.1
 - Change the default password in System -> User Manager -> Admin -> Change password
 - Setup of the OS is finished
-- Setup Log Forwarding
-    - go to Status -> System Logs -> Settings
-    - scroll down to Remote logging and enable it
-    - set 192.168.1.20 on port 514 for Remote log Server
-- On Ubuntu Server
-    - edit ossec.conf and add new remote listening
-    ![Ossec.conf](setup_files/ossec_conf_ubuntu.png)
-    - restart the service
-        - sudo systemctl restart wazuh-manager
 
+### Host change and Switch to KVM (12.03.2026)
+- unfortunetly my initial Host Device is no longer functional so i had to move my Setup to my spare Machine
+- Also a switch towards KVM was made, as it has better stability and performance and is widely used in production Environments
+- I will be using virt-manager as my GUI for KVM, which means i had to change Create new network plan for the VMs
+- i created a new Virtual network lab-lan, which is has following parameters
+![lab-lan](setup_files/lab-lan.png)
+- and a NAT WAN named default
+![nat-wan](setup_files/lab_default.png)
+- Also an additional VM was added, Kali Linux as its not longer my host
+- So my machines got following network settings:
+    - pfSense -> Virtual Network: default
+    - Windows 11 -> Virtual Network: lab-lan
+    - Ubuntu Server -> Virtual Network: lab-lan
+    - Kali Linux -> Virtual Network: lab-lan
+- I decided to put Kali Linux on LAN as well, so i can have multiple angles to attack not only the gateway but also client and wazuh server, to simulate not only attack from Internet but also possible internal breach in action
