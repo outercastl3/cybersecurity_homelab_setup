@@ -108,3 +108,41 @@ works as my detailed steps description and a small instruction for future refere
     - Ubuntu Server -> Virtual Network: lab-lan
     - Kali Linux -> Virtual Network: lab-lan
 - I decided to put Kali Linux on LAN as well, so i can have multiple angles to attack not only the gateway but also client and wazuh server, to simulate not only attack from Internet but also possible internal breach in action
+
+### Log Forwarding Setup from pfSense to Wazuh (15.03.2026)
+- Logs from pfSense are not directly accepted by the Wazuh Manager as they have a different formatting, so my approach is to reformat them with help of syslog-ng sitting on the Ubuntu server
+- Topology would be this way then: pfSense -> syslog on UDP 514 -> syslog-ng reciever (UbuntuS) -> formatting -> Wazuh Manager
+- First we setup the pfSense forwarding of the logs
+    - Open WebGUI and access Status -> System Logs -> Settings
+    - at the end of the page enable log forwarding
+    - Select LAN option as we send the logs localy in this Lab
+    - for IP select our Ubuntu Server IP on port 5140 -> 192.168.1.20:5140 
+    - i will be using port 5140, to make sure there are no conflicts with Wazuh setup on port 514
+    - select to forward everything
+
+- On Ubuntu Server
+    - install syslog-ng by running sudo apt install syslog-ng
+    - we edit syslog-ng config and add pfSense as source
+    ![source syslog-ng](setup_files/source_pfsense_syslog_ng.png)
+    ![destination syslog-ng](setup_files/destination_wazuh_syslog_ng.png)
+    ![log syslog-ng](setup_files/log_syslog_ng.png)
+    - then we try if its working
+        - see if the daemon itself is working
+        - sudo systemctl status syslog-ng
+        - then if its listening on right port and protocol
+        - sudo ss -ulnp | grep 5140
+        - then we generate some activity on the pfSense
+        - and check through sudo tail -f /var/log/pfsense.log
+        ![tail output](setup_files/tail_output.png)
+        - success
+        - now we forward those logs to Wazuh with editing syslog-ng.conf again
+        ![destination syslog-ng2](setup_files/destination_syslog.png)
+        ![log syslog-ng2](setup_files/log_syslog2.png)
+        - restart the syslog-ng
+        - now we edit ossec.conf or Wazuh config to accept forwarded logs
+        ![ossec configuration](setup_files/ossec_local.png)
+        - now check through Wazuh Dashboard if the logs are showing
+        - navigate to Server Management -> Logs -> filter for 192.168.1.1
+        ![wazuh dashboard 192.168.1.1](setup_files/wazuh_dashboard.png)
+        - success
+   - Lab Setup is Finished
