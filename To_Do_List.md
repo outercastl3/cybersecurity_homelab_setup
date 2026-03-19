@@ -10,9 +10,9 @@
 - [x] Install sysmon on Win11 VM
 - [x] Create an Network diagram
 - [ ] Run and document scenarios
-    - [ ] Bruteforce on SSH or RDP
+    - [x] Bruteforce on SSH or RDP
     - [ ] Run malware sample on Win11 machine
-    - [ ] Run Nmap scans
+    - [x] Run Nmap scans
     - [ ] Create Suspicious scheduled task
 
 
