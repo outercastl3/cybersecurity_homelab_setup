@@ -12,7 +12,7 @@
     - NAT interface would simulate external attacks towards pfSense from the internet
     - LAN would simulate internal breach / lateral movement within the network
     for LAN to work properly modify interface on /etc/network/interfaces
-        ![interface-kali](screenshot/kali_network.png)
+        ![interface-kali](screenshot/kali_network1.png)
 - For first walkthrough i would go with internal breach and targeting Ubuntu Servers SSH (192.168.1.20 on port 22)
 
 ## Walkthrough
