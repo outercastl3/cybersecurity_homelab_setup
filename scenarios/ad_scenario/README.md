@@ -11,7 +11,7 @@ or a Breach scenarios following with adversary creating persistence and then Lat
 - Domain Dominance
 
 ## Requirements
-- Windows Server 2022 (Domain Controller)
+- Windows Server 2025 (Domain Controller)
 - Windows 11 (Domain joined workstation)
 - Kali Linux (Attacker)
 
