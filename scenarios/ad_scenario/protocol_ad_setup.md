@@ -31,7 +31,18 @@ a detailed how to Active Directory setup from my perspective with all necessary 
 ![Setting Static Ip](screenshots/staticip_setup.png)
 - and we also set the DNS to loop into itself
     - with Set-DnsClientServerAddress -InterfaceIndex 5 -ServerAddress 127.0.0.1
+    - but for installation we will be looping to our own ip, for installation only (192.168.1.40)
 - we install Active Directory Domain Services
     - with Install-WindowsFeature -Name AD-Domain-Services -IncludeManagementTools
 ![ADDS Installation](screenshots/ad_install.png)
-
+- we setup the installtion of Domain Controller in such manner
+![Domain Controller Promotion](screenshots/domain_promotion.png)
+- i chose the name lab.local for the lab, but in enterprise env, something more like corp.name.com would be more professional
+- LAB would be the shortname for the domain
+- also we will setup a recovery mode password
+- after we start install, the VM would reboot itself, and we will be greated with a login screen
+    - we should see that Administrator was addded to the LAB group (which we can observe on the screenshot)
+![Login Screen](screenshots/login.png)
+- We also can check with Get-ADDomain
+![Get-ADDomain  Output](screenshots/get_addomain_output.png)
+- we successfully promotaed our Domain Controller
