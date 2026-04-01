@@ -31,4 +31,7 @@ a detailed how to Active Directory setup from my perspective with all necessary 
 ![Setting Static Ip](screenshots/staticip_setup.png)
 - and we also set the DNS to loop into itself
     - with Set-DnsClientServerAddress -InterfaceIndex 5 -ServerAddress 127.0.0.1
+- we install Active Directory Domain Services
+    - with Install-WindowsFeature -Name AD-Domain-Services -IncludeManagementTools
+![ADDS Installation](screenshots/ad_install.png)
 
