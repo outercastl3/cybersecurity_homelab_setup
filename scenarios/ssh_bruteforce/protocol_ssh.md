@@ -12,25 +12,25 @@
     - NAT interface would simulate external attacks towards pfSense from the internet
     - LAN would simulate internal breach / lateral movement within the network
     for LAN to work properly modify interface on /etc/network/interfaces
-        ![interface-kali](screenshots/kali_network1.png)
+        ![interface-kali](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ssh_bruteforce/screenshots/kali_network1.png)
 - For first walkthrough i would go with internal breach and targeting Ubuntu Servers SSH (192.168.1.20 on port 22)
 
 ## Walkthrough
 - from kali machine run nmap scan to see if ssh ports are open
 - run a nmap scan which picks up service versions by running
-![Nmap Scan](screenshots/nmap_scan.png)
+![Nmap Scan](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ssh_bruteforce/screenshots/nmap_scan.png)
 - now we check if Wazuh picked it up in Wazuh WEB UI
 - navigate to Threat Hunting and in Events we can see multiple failed HTTP 400 error codes, which hints to our nmap scan
-![nmap output Wazuh](screenshots/wazuh_nmap.png)
+![nmap output Wazuh](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ssh_bruteforce/screenshots/wazuh_nmap.png)
 - now we run our SSH script
 - i let my script run for 50 different passwords
-![bruteforce](screenshots/bruteforce_scrit.png)
+![bruteforce](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ssh_bruteforce/screenshots/bruteforce_scrit.png)
 - Now is the time to check the Wazuh dashboard
 - we navigate to Threat Hunting
 - we immediately see 102 failed auth-attempts
-![wazuh dashboard1](screenshots/wazuh_dashboard1.png)
+![wazuh dashboard1](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ssh_bruteforce/screenshots/wazuh_dashboard1.png)
 - when we navigate to Events, we can see a lot of failed logon attempts as well
-![wazuh events](screenshots/wazuh_dashboard2.png)
+![wazuh events](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ssh_bruteforce/screenshots/wazuh_dashboard2.png)
 - we can see Wazuh assigned different severity levels to different alerts, most dangerous one in this case is Multiple failed logons in short time with a severity level 10
 - and also different rule ids:
     - failed sshd logon attempts with 5760
@@ -41,15 +41,15 @@
 - My idea is to trigger script as soon as level 10 alert is triggered
 - for it we need to edit ossec.conf
 - we add active response
-![active response](screenshots/active_response.png)
+![active response](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ssh_bruteforce/screenshots/active_response.png)
 - and then we add a corresponding command
-![command](screenshots/command_ossec.png)
+![command](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ssh_bruteforce/screenshots/command_ossec.png)
 - also for it to work, we need to modify pfSense to have SSH running
 - we do it by going to pfSense WEB UI -> System -> Advanced -> Admin Access
-![ssh setup](screenshots/ssh_setup.png)
+![ssh setup](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ssh_bruteforce/screenshots/ssh_setup.png)
 - then we need implement a Block Rule
 - open WEB UI -> Firewall -> Aliases and we add a bruteforce HOST
 - then we navigate to Firewall -> Rules -> LAN, then we add new Action block, with host bruteforce, any destination
-![pfsense ui](screenshots/pfsense_ui.png)
+![pfsense ui](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ssh_bruteforce/screenshots/pfsense_ui.png)
 - Sadly due to my lab limitations i couldn't fully  implement automatic ip blockage, as my network is not segmented as good as enterprise systems, but also that pfSense does not allow custom pfctl rules and prefers to use WEB UI, i have some limitation in my Lab. In a Work environment, it is possible to implement my script with help of REST-API provided by the pfSense
 - Otherwise the main goal of the LAB was achieved
