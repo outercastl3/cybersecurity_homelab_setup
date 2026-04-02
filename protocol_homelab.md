@@ -9,11 +9,11 @@ works as my detailed steps description and a small instruction for future refere
 ### OpenBSD Setup (09.03.2026) - Replaced, kept for reference
 - Install OpenBSD and setup a singular root user
 - Setup 2 Network Adapters one set to NAT other one set to Internal Network
-![Network Adapter 1](setup_files/network_adapter1.png)
+![Network Adapter 1](https://outercastl3.github.io/cybersecurity_homelab_setup/setup_files/network_adapter1.png)
 ![Network Adapter 2](setup_files/network_adapter2.png)
 
 ##### Ifconfig output before the setup
-![Ifconfig Output before](setup_files/ifconfig_output_before.png)
+![Ifconfig Output before](https://outercastl3.github.io/cybersecurity_homelab_setup/setup_files/ifconfig_output_before.png)
 
 #### 1. Assign static IP to LAN interface
 - echo 'inet 192.168.1.1 255.255.255.0' > /etc/hostname.em1
@@ -33,18 +33,18 @@ works as my detailed steps description and a small instruction for future refere
 - rcctl enable pf
 
 #### 6. If config output after the setup
-![Ifconfig output after](setup_files/ifconfig_output_after.png)
+![Ifconfig output after](https://outercastl3.github.io/cybersecurity_homelab_setup/setup_files/ifconfig_output_after.png)
 
 ### Ubuntu Server Setup (10.03.2026)
 - Setup ubuntu server and modify /etc/netplan/00-installer-config.yaml as follows(visible in the setup files)
 - Change Network Adapter of the VM (see picture below)
-![Network Adapter Ubuntu](setup_files/network_adapter_ubuntu.png)
+![Network Adapter Ubuntu](https://outercastl3.github.io/cybersecurity_homelab_setup/setup_files/network_adapter_ubuntu.png)
 - Ran into a problem, Ubuntu Server VM no longer boots properly
     - try to boot through recovery with GRUB
     - successful
 - after a quick search i found that its VirtualBox console issue fixable by Right Ctrl + F1/F2/F3
 - ip a output after the setup
-![Ip A output after](setup_files/ip_a_output_after.png)
+![Ip A output after](https://outercastl3.github.io/cybersecurity_homelab_setup/setup_files/ip_a_output_after.png)
 - Download wazuh with help of curl -sO https://packages.wazuh.com/4.14/wazuh-install.sh (ensure the O in curl is capital letter o and not a zero)
 - install wazuh with sudo bash ./wazuh-install.sh -a
 - save given credentials
@@ -52,43 +52,43 @@ works as my detailed steps description and a small instruction for future refere
 ### Win11 Client Setup (10.03.2026)
 - Setup Windows 11 with a local user setup via Microsoft account bypass 
 - Change Network Adapter of the VM
-![Network Adapter Windows11](setup_files/network_adapter_win11.png)
+![Network Adapter Windows11](https://outercastl3.github.io/cybersecurity_homelab_setup/setup_files/network_adapter_win11.png)
 - in Network & Internet, change Ethernet to Manual IP with
     - IP: 192.168.1.10
     - Subnet mask: 255.255.255.0
     - Gateway: 192.168.1.1
     - DNS: 8.8.8.8
-![Network Settings Windows](setup_files/network_win11.png)
+![Network Settings Windows](https://outercastl3.github.io/cybersecurity_homelab_setup/setup_files/network_win11.png)
 - test connection by pinging the gateway and Internet(8.8.8.8 in this case)
-![Test connectivity gateway](setup_files/ping_gateway.png)
+![Test connectivity gateway](https://outercastl3.github.io/cybersecurity_homelab_setup/setup_files/ping_gateway.png)
 
 
-![Test Connectivity to Internet](setup_files/ping_8.png)
+![Test Connectivity to Internet](https://outercastl3.github.io/cybersecurity_homelab_setup/setup_files/ping_8.png)
 - The setup Works, now we try to Access Wazuh to check if wazuh set up correctly
-![Wazuh Setup](setup_files/wazuh_setup.png)
+![Wazuh Setup](https://outercastl3.github.io/cybersecurity_homelab_setup/setup_files/wazuh_setup.png)
 - Try and Login to ensure that credentials are correct and Wazuh is working
-![Wazuh Home Page](setup_files/wazuh_page.png)
+![Wazuh Home Page](https://outercastl3.github.io/cybersecurity_homelab_setup/setup_files/wazuh_page.png)
 - It works
 - install sysmon and Wazuh agent on win11
 - install sysmon off official Microsoft Sysinternals and setup the SwiftOnSecurity config of Github
     - Run PowerShell as administrator and run
         - .\Sysmon64.exe -accepteula -i sysmonconfig-export.xml
         - as i installed it incorrectly, i had to update with .\Sysmon64.exe -c sysmonconfig-export.xml
-![Sysmon Setup](setup_files/sysmon_update.png)
+![Sysmon Setup](https://outercastl3.github.io/cybersecurity_homelab_setup/setup_files/sysmon_update.png)
 - For wazuh follow instructions on the local host website
 - Successful agent installation
-![Wazuh Agent Setup](setup_files/wazuh_agent.png)
+![Wazuh Agent Setup](https://outercastl3.github.io/cybersecurity_homelab_setup/setup_files/wazuh_agent.png)
 
 ### New gateway setup pfSense Community edition (10.03.2026)
 - I decided to replace OpenBSD with pfSense
 - Decision was based upon pfSense having more similarities to Enterprise environments and an easier log forwarding
 - Download pfSense Community edition off Netgate website
 - Setup pfSense similarly with 2 Network Adapters
-![Network Adapter1 pfSense](setup_files/network1_pfsense.png)
-![Network Adapter2 pfSense](setup_files/network2_pfsense.png)
+![Network Adapter1 pfSense](https://outercastl3.github.io/cybersecurity_homelab_setup/setup_files/network1_pfsense.png)
+![Network Adapter2 pfSense](https://outercastl3.github.io/cybersecurity_homelab_setup/setup_files/network2_pfsense.png)
 - Install the OS itself and choose WAN for interface em0 and LAN for interface em1
 - Reboot the VM
-![pfSense setup Screenshot](setup_files/setup_pfsense.png)
+![pfSense setup Screenshot](https://outercastl3.github.io/cybersecurity_homelab_setup/setup_files/setup_pfsense.png)
 - from Win11 access pfSense local website on 192.168.1.1
 - Change the default password in System -> User Manager -> Admin -> Change password
 - Setup of the OS is finished
@@ -98,9 +98,9 @@ works as my detailed steps description and a small instruction for future refere
 - Also a switch towards KVM was made, as it has better stability and performance and is widely used in production Environments
 - I will be using virt-manager as my GUI for KVM, which means i had to change Create new network plan for the VMs
 - i created a new Virtual network lab-lan, which is has following parameters
-![lab-lan](setup_files/lab-lan.png)
+![lab-lan](https://outercastl3.github.io/cybersecurity_homelab_setup/setup_files/lab-lan.png)
 - and a NAT WAN named default
-![nat-wan](setup_files/lab_default.png)
+![nat-wan](https://outercastl3.github.io/cybersecurity_homelab_setup/setup_files/lab_default.png)
 - Also an additional VM was added, Kali Linux as its not longer my host
 - So my machines got following network settings:
     - pfSense -> Virtual Network: default
@@ -123,9 +123,9 @@ works as my detailed steps description and a small instruction for future refere
 - On Ubuntu Server
     - install syslog-ng by running sudo apt install syslog-ng
     - we edit syslog-ng config and add pfSense as source
-    ![source syslog-ng](setup_files/source_pfsense_syslog_ng.png)
-    ![destination syslog-ng](setup_files/destination_wazuh_syslog_ng.png)
-    ![log syslog-ng](setup_files/log_syslog_ng.png)
+    ![source syslog-ng](https://outercastl3.github.io/cybersecurity_homelab_setup/setup_files/source_pfsense_syslog_ng.png)
+    ![destination syslog-ng](https://outercastl3.github.io/cybersecurity_homelab_setup/setup_files/destination_wazuh_syslog_ng.png)
+    ![log syslog-ng](https://outercastl3.github.io/cybersecurity_homelab_setup/setup_files/log_syslog_ng.png)
     - then we try if its working
         - see if the daemon itself is working
         - sudo systemctl status syslog-ng
@@ -133,16 +133,16 @@ works as my detailed steps description and a small instruction for future refere
         - sudo ss -ulnp | grep 5140
         - then we generate some activity on the pfSense
         - and check through sudo tail -f /var/log/pfsense.log
-        ![tail output](setup_files/tail_output.png)
+        ![tail output](https://outercastl3.github.io/cybersecurity_homelab_setup/setup_files/tail_output.png)
         - success
         - now we forward those logs to Wazuh with editing syslog-ng.conf again
-        ![destination syslog-ng2](setup_files/destination_syslog.png)
-        ![log syslog-ng2](setup_files/log_syslog2.png)
+        ![destination syslog-ng2](https://outercastl3.github.io/cybersecurity_homelab_setup/setup_files/destination_syslog.png)
+        ![log syslog-ng2](https://outercastl3.github.io/cybersecurity_homelab_setup/setup_files/log_syslog2.png)
         - restart the syslog-ng
         - now we edit ossec.conf or Wazuh config to accept forwarded logs
-        ![ossec configuration](setup_files/ossec_local.png)
+        ![ossec configuration](https://outercastl3.github.io/cybersecurity_homelab_setup/setup_files/ossec_local.png)
         - now check through Wazuh Dashboard if the logs are showing
         - navigate to Server Management -> Logs -> filter for 192.168.1.1
-        ![wazuh dashboard 192.168.1.1](setup_files/wazuh_dashboard.png)
+        ![wazuh dashboard 192.168.1.1](https://outercastl3.github.io/cybersecurity_homelab_setup/setup_files/wazuh_dashboard.png)
         - success
    - Lab Setup is Finished
