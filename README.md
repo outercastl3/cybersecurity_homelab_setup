@@ -25,7 +25,7 @@ Personal homelab project to develop my practical skills in Network setup, Firewa
 - Planned 
     - create a Active Directory setup
 ## Network Diagram
-![Network Diagram](Network_Diagram.png)
+![Network Diagram](https://outercastl3.github.io/cybersecurity_homelab_setup/Network_Diagram.png)
 
 # Author 
 Bogdan Ermakov
