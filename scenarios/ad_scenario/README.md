@@ -16,7 +16,7 @@ or a Breach scenarios following with adversary creating persistence and then Lat
 - Kali Linux (Attacker)
 
 ## Status
-- [ ] Windows Server setup
-- [ ] Active Directory configuration
+- [x] Windows Server setup
+- [x] Active Directory configuration
 - [ ] Attack simulation
-- [ ] Documentation
+- [x] Documentation(Partial)
