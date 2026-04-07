@@ -67,5 +67,5 @@ a detailed how to Active Directory setup from my perspective with all necessary 
 ![New User](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/newuser.png)
 - now we get on Windows 11 machine
 - and login to our user1 account
-![Windows Logon](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/logon_windows.png)
+![Windows Logon](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/logon_win11.png)
 - we successfuly created a joined domain account
