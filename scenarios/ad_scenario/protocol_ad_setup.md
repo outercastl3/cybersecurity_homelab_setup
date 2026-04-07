@@ -55,4 +55,17 @@ a detailed how to Active Directory setup from my perspective with all necessary 
 ![Ubuntu DNS](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/windows_dns.png)
 - apply the changes 
 - Similarly we change the Kali Machine
-    - edit the resolv config and add 192.168.1.40 as the default DNS resolver 
+    - edit the resolv config and add 192.168.1.40 as the default DNS resolver
+- Now we join Domain from our Windows 11 machine
+    - we open Powershell as administrator
+![Domain Join](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/domain_join.png)
+- We are greeted with a context window
+![Context Window](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/context_window.png)
+- after we input the password, our machine would restart itself
+- We are greeted with logon screen, but first we create a user on our Domain Controller by running 
+    - New-ADUser -Name "user1" -SamAccountName "user1" -AccountPassword (Read-Host -AsSecureString "Password") -Enabled $true
+![New User](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/newuser.png)
+- now we get on Windows 11 machine
+- and login to our user1 account
+![Windows Logon](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/logon_windows.png)
+- we successfuly created a joined domain account
