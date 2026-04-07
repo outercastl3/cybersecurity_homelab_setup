@@ -42,7 +42,17 @@ a detailed how to Active Directory setup from my perspective with all necessary 
 - also we will setup a recovery mode password
 - after we start install, the VM would reboot itself, and we will be greated with a login screen
     - we should see that Administrator was addded to the LAB group (which we can observe on the screenshot)
-![Login Screen](screenshots/login.png)
+![Login Screen](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/login.png)
 - We also can check with Get-ADDomain
-![Get-ADDomain  Output](screenshots/get_addomain_output.png)
+![Get-ADDomain  Output](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/get_addomain_output.png)
 - we successfully promotaed our Domain Controller
+- now we change the default DNS address of all of the other machines to point towards the Active Directory one (192.168.1.40) and we set DNS to loop into itself
+- first we start with the Domain Controller
+    - with Set-DnsClientServerAddress -InterfaceIndex 5 -ServerAddress 127.0.0.1
+- afterwards we change the DNS for our Windows 11 client
+![Windows DNS](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/windows_dns.png)
+- then we change Ubuntu's netplan config, to resolve DNS through AD
+![Ubuntu DNS](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/windows_dns.png)
+- apply the changes 
+- Similarly we change the Kali Machine
+    - edit the resolv config and add 192.168.1.40 as the default DNS resolver 
