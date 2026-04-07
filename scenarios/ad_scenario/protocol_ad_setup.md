@@ -52,7 +52,7 @@ a detailed how to Active Directory setup from my perspective with all necessary 
 - afterwards we change the DNS for our Windows 11 client
 ![Windows DNS](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/windows_dns.png)
 - then we change Ubuntu's netplan config, to resolve DNS through AD
-![Ubuntu DNS](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/windows_dns.png)
+![Ubuntu DNS](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/ubuntu_dns.png)
 - apply the changes 
 - Similarly we change the Kali Machine
     - edit the resolv config and add 192.168.1.40 as the default DNS resolver
@@ -69,3 +69,8 @@ a detailed how to Active Directory setup from my perspective with all necessary 
 - and login to our user1 account
 ![Windows Logon](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/logon_win11.png)
 - we successfuly created a joined domain account
+- Lastly we add a Wazuh Agent onto our windows server
+    - we use Wazuh web GUI in similar way we used it for creating an Agent for Windows 11
+- and check if the agent is seen by the Wazuh Manager, i will use GUI approach, but its also possible to check with Wazuh utility on the Ubuntu Server by
+    - running /var/ossec/bin/agent_control -l
+![Wazuh WinServ](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/wazuh_agents.png)
