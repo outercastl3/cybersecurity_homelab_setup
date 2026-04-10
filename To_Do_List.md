@@ -15,5 +15,5 @@
     - [x] Run Nmap scans
     - [ ] Create Suspicious scheduled task
 
-- [ ] Create and Setup AD
+- [x] Create and Setup AD
 - [ ] Do scenarios with AD
