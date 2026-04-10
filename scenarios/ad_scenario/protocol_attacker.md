@@ -4,7 +4,7 @@
 - Windows 11 workstation misconfigured at the install by a junior administrator with:
     - disabled real-time antivirus monitoring
     - ICMP allowed through a custom firewall policy
-- Domain joined workstation with standard usr privileges
+- Domain joined workstation with standard user privileges
 
 ## Lab Configuration Notes
 Following commands were used to simulate the configuration of the environment:
