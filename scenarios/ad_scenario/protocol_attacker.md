@@ -38,7 +38,7 @@ Following commands were used to simulate the configuration of the environment:
     - OS fingerprinted target as Windows 11 with 96% confidence
     - Single hop confirms direct LAN access
 
-## Intitial Access (TA0001)
+## Initial Access (TA0001)
 - We craft a malicious reverse TCP shell, with help of Meterpreter
 - Shell would listen on port 4444
 - We generate the Payload using msfvenom:
@@ -52,7 +52,7 @@ Following commands were used to simulate the configuration of the environment:
 ![Metasploit](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/metasploit.png)
 - We wait until the target opens our malicious file
 - After several tries of target trying to open our Payload, we get a successful connection
-![Metasploit success](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/metasploitsuccess)
+![Metasploit success](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/metasploitsuccess.png)
 - We start with Enumeration
     - getuid
     - sysinfo
@@ -62,7 +62,10 @@ Following commands were used to simulate the configuration of the environment:
     - current user logged in LAB\user1 (standard domain user)
     - Machine is called TESTNAME1 joined to LAB domain
     - and current user only has standard priviledges, no administrative rights
-- as we got logged in a simple user, we are required to try Privelege Escalation
+
+## Persistence (TA0003)
+
+## Privilege Escalation (TA0004)
 - we try simplest escalation attempt
     - getsystem
 - Meterpreter successfully escalated using technique 6
@@ -75,7 +78,7 @@ Following commands were used to simulate the configuration of the environment:
 - After running suggested exploits, i found out that user1 is not in the admin groups so priviledge escalation is unlikely
 ![user1 Groups](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/shell_groups.png)
 - we can confirm that user1 is a standard domain user
-- Member of BUILTIN\Users only 
+- Member of BUILTIN\Users only
 - has medium integrity level
 - which forces towards domain-level attacks
 - New idea - Kerebroasting
@@ -87,9 +90,6 @@ Following commands were used to simulate the configuration of the environment:
 - we run several other attempts
 ![impacket](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/impacket.png)
 
-## Persistence (TA0003)
-
-## Privilege Escalation (TA0004)
 
 ## Credential Access (TA0006)
 
