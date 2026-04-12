@@ -62,9 +62,16 @@ Following commands were used to simulate the configuration of the environment:
     - current user logged in LAB\user1 (standard domain user)
     - Machine is called TESTNAME1 joined to LAB domain
     - and current user only has standard priviledges, no administrative rights
-
 ## Persistence (TA0003)
-
+- we try to create a scheduled task with our payload file
+![schtask](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/schtask.png)
+- as expected we get an error, we dont have the priveledges
+- we try to run registry run key, which could run from user level
+![registry run key](ttps://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/registry.png)
+- Confirmed entry present alongside legitimate OneDrive startup entry
+    - Demonstrates how malware blends with legitimate process
+- Every new logon will execute invoice.exe and re-establish connection
+- It maps to MITRE T1547.001 - Registry Run Keys / Startup Folder
 ## Privilege Escalation (TA0004)
 - we try simplest escalation attempt
     - getsystem
