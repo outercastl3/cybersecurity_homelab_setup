@@ -46,7 +46,7 @@ Following commands were used to simulate the configuration of the environment:
 ![MSFVENOM](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/msfvenom.png)
 - I decided to use msfvenom in this instance, and not create my own tool, as it seemed more time efficient for my learning now
 - To deliver payload we use a spear phishing email containing a malicious attachment disguised as legitimate invoice
-    - Email appears to be a vendor payment requiest
+    - Email appears to be a vendor payment request
     - Victim downloads and executes invoice.exe 
 - Now we setup Metasploit listener
 ![Metasploit](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/metasploit.png)
@@ -62,6 +62,7 @@ Following commands were used to simulate the configuration of the environment:
     - current user logged in LAB\user1 (standard domain user)
     - Machine is called TESTNAME1 joined to LAB domain
     - and current user only has standard priviledges, no administrative rights
+
 ## Persistence (TA0003)
 - we try to create a scheduled task with our payload file
 ![schtask](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/schtask.png)
@@ -72,23 +73,26 @@ Following commands were used to simulate the configuration of the environment:
     - Demonstrates how malware blends with legitimate process
 - Every new logon will execute invoice.exe and re-establish connection
 - It maps to MITRE T1547.001 - Registry Run Keys / Startup Folder
+
 ## Privilege Escalation (TA0004)
 - we try simplest escalation attempt
     - getsystem
 - Meterpreter successfully escalated using technique 6
     - Named Pipe Impersonation via EFSRPC
-    - EfsPotato abuses the Encrypting File System RPC interface to impersonate the SYSTEM token via a named pipe
+    - EfsPotato abuses the Encrypting File System RPC Interface to impersonate the SYSTEM token via a named pipe
 - We run getuid again to confirm we were escalated
 - We are still logged as user1
 ![getsystem+getuid](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/get_sysuid.png)
 - we background the session and run exploit suggester, to find out which exploits might work on this specific target
-- After running suggested exploits, i found out that user1 is not in the admin groups so priviledge escalation is unlikely
+- After running suggested exploits, i found out that user1 is not in the admin groups so privilege escalation is unlikely
 ![user1 Groups](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/shell_groups.png)
 - we can confirm that user1 is a standard domain user
 - Member of BUILTIN\Users only
 - has medium integrity level
-- which forces towards domain-level attacks
-- New idea - Kerebroasting
+- Local privilege escalation exhausted, pivoting to Credential Access techniques via domain attack surface
+
+## Credential Access (TA0006)
+- New idea - Kerberoasting
 - We proceed with kiwi and kerberos ticket list
 ![kiwi and kerberos ticket list](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/kiwi_kerb.png)
 - Attempted Kerberoasting via impacket-GetUserSPNs
@@ -97,11 +101,13 @@ Following commands were used to simulate the configuration of the environment:
 - we run several other attempts
 ![impacket](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/impacket.png)
 
-
-## Credential Access (TA0006)
-
-## Lateral Movement (TA0008)
-
-## Domain Dominance
-
 ## Outcome
+For this lab i decided to cut the scenarios after the Privilege Escalation as it proved to be too time consuming to only focus on Red Team part of the scenario. Beneficial for this lab would be the Blue Team Incident report, which is also included in this scenario
+- Summary of the red team scenario:
+    - established persistence
+    - Successful enumeration
+- This attack would include such steps as:
+    - Token impersonation, in case an administrator privilege level user is also logged in on the machine
+    - Kerberoasting against service accounts
+    - or BloodHound mapped attack paths to Domain Admin
+- The defensive analysis of this attack chain is available in the Incident Report for this lab
