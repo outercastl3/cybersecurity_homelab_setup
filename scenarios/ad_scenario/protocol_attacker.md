@@ -111,3 +111,11 @@ For this lab i decided to cut the scenarios after the Privilege Escalation as it
     - Kerberoasting against service accounts
     - or BloodHound mapped attack paths to Domain Admin
 - The defensive analysis of this attack chain is available in the Incident Report for this lab
+
+## MITRE ATT&CK Techniques Used
+- T1566.001 - Spearphishing Attachment (Initial Access)
+- T1204.002 - User Execution: Malicious File
+- T1547.001 - Registry Run Keys / Startup Filder (Persistence)
+- T1068 - Exploitation for Privilege Escalation
+- T1558 - Steal or Forge Kerberos Tickets (Credential Access)
+- T1021.002 - SMB/Windows Admin Shares (Lateral Movement attempt)
