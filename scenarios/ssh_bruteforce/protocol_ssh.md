@@ -30,7 +30,7 @@
 - we immediately see 102 failed auth-attempts
 ![wazuh dashboard1](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ssh_bruteforce/screenshots/wazuh_dashboard1.png)
 - when we navigate to Events, we can see a lot of failed logon attempts as well
-![wazuh events](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ssh_bruteforce/screenshots/wazuh_dashboard2.png)
+![wazuh events](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ssh_bruteforce/screenshots/wazuh_dasboard2.png)
 - we can see Wazuh assigned different severity levels to different alerts, most dangerous one in this case is Multiple failed logons in short time with a severity level 10
 - and also different rule ids:
     - failed sshd logon attempts with 5760
