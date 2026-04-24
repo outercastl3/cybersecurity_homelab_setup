@@ -14,7 +14,6 @@ multi-stage attacks.
 | 10004 | Outbound Connection from Server | Flag unexpected outbound connections as potential C2 or reverse shell activity |
 | 10005 | SSH Authorized Keys Modification | Detect changes to authorized_keys as a persistence indicator |
 | 10006 | Incoming Scan Detection (Host) | Detect port scans observed by the Ubuntu agent |
-| 10007 | Incoming Scan Detection (Firewall) | Detect port scans observed by pfSense logs |
 
 ## Grouping
 Rules 10002–10005 share the group tag `attack.persistence` for dashboard correlation.

@@ -1,0 +1,13 @@
+<group name="network,reconnaissance,scan_detection">
+
+  <rule id="10006" level="10" frequency="20" timeframe="60">
+    <if_matched_sid>40101</if_matched_sid>
+    <same_srcip />
+    <description>Incoming Port Scan: Multiple connection attempts from same source IP</description>
+    <mitre>
+      <id>T1046</id>
+    </mitre>
+    <group>attack.reconnaissance</group>
+  </rule>
+
+</group>
