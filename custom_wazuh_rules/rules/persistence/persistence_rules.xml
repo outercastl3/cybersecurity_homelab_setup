@@ -1,9 +1,20 @@
 <group name="attack.persistence">
-  <rule id="10004" level="10">
-    <if_sid>2832</if_sid>
+  <rule id="10003" level="10" overwrite="yes">
+    <if_sid>2830</if_sid>
+    <match>REPLACE</match>
     <description>Persistence: Crontab modification detected</description>
     <mitre>
       <id>T1053.003</id>
+    </mitre>
+  </rule>
+
+  <rule id="10004" level="12">
+    <if_sid>61603</if_sid>
+    <field name="win.eventdata.originalFileName">schtasks.exe</field>
+    <field name="win.eventdata.commandLine">\/create</field>
+    <description>Persistence: Scheduled task created via schtasks.exe by $(win.eventdata.user)</description>
+    <mitre>
+      <id>T1053.005</id>
     </mitre>
   </rule>
 </group>
