@@ -1,4 +1,15 @@
 <group name="attack.persistence">
+  <rule id="10002" level="8">
+    <if_sid>5902</if_sid>
+    <description>Persistence: Interactive user created outside of working hours</description>
+    <match>shell=/bin/bash|shell=/bin/sh</match>
+    <mitre>
+      <id>T1136</id>
+    </mitre>
+    <time>8 pm - 6 am</time>
+    <weekday>weekends,monday,tuesday,wednesday,thursday,friday</weekday>
+  </rule>
+
   <rule id="10003" level="10" overwrite="yes">
     <if_sid>2830</if_sid>
     <match>REPLACE</match>
