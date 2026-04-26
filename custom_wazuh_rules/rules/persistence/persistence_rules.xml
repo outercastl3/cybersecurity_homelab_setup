@@ -1,0 +1,9 @@
+<group name="attack.persistence">
+  <rule id="10004" level="10">
+    <if_sid>2832</if_sid>
+    <description>Persistence: Crontab modification detected</description>
+    <mitre>
+      <id>T1053.003</id>
+    </mitre>
+  </rule>
+</group>
