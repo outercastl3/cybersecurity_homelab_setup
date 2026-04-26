@@ -1,0 +1,6 @@
+<decoder name="sysmon_schtasks">
+  <parent>windows</parent>
+  <prematch>schtasks</prematch>
+  <regex offset="after_prematch">/tn (\S+)</regex>
+  <order>win.eventdata.taskName</order>
+</decoder>

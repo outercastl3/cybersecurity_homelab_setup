@@ -1,0 +1,6 @@
+<decoder name="custom_crontab_modification">
+  <program_name>^crontab$</program_name>
+  <prematch>REPLACE</prematch>
+  <regex>\(([a-zA-Z0-9_-]+)\) REPLACE</regex>
+  <order>user</order>
+</decoder>
