@@ -17,4 +17,15 @@
       <id>T1053.005</id>
     </mitre>
   </rule>
+
+  <rule id="10005" level="15" timeframe="120">
+    <if_sid>5715</if_sid>
+    <if_matched_sid>550</if_matched_sid>
+    <field name="file">.ssh/authorized_keys</field>
+    <description>Persistence: SSH authorized_keys were modified following a successful SSH login</description>
+    <mitre>
+      <id>T1098.004</id>
+    </mitre>
+  </rule>
+
 </group>
