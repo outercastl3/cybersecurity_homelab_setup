@@ -70,8 +70,11 @@ Following commands were used to simulate the configuration of the environment:
 - we try to run registry run key, which could run from user level
 ![registry run key](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/registry.png)
 - Confirmed entry present alongside legitimate OneDrive startup entry
-    - Demonstrates how malware blends with legitimate process
-- Every new logon will execute invoice.exe and re-establish connection
+- To add a social engineering angle, we also create a new Deceptive Directory named "C:\Program File (x86)\Common FIles\System\UpdateChecker" and copy our payload there with changed name
+![directory creation](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/folder_creation.png)
+![file copy under new name](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/file_copy.png)
+- afterwards we create another registry rule, so we have multiple possible persistence angles
+![persistence v2](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/persistencev2.png)
 - It maps to MITRE T1547.001 - Registry Run Keys / Startup Folder
 
 ## Privilege Escalation (TA0004)
