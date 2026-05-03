@@ -22,5 +22,56 @@ at 14:50:46 adversary attempted adding a Value to a registry key, the operation 
 ![event viewer](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/event_viever_pers.png)
 As we can see reg.exe was used for creating a run key, which maps to T1547.001. It was created under user1, so no admin rights were needed for HKCU
 
+## Containment
+Upon identifying the malicious executable, following containment steps were taken
+
+- Malicious file 'invoice.exe' located in 'C:\Users\user1\Downloads', was copied and preserved as evidence for further analysis
+![containment1](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/containment1.png)
+- File hash was calculated and submitted to MalwareBazaar for identification
+![hash](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/hash.png)
+- All active connections and processes associated with invoice.exe were terminated
+    - Commands used during Check:
+        - netstat -ano or Get-NetTCPConnection | Where-Object State -eq Established (check all active connections)
+![connection](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/connection.png)
+        - Get-Process or tasklist /v (check all running processes)
+![process](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/proc.png)
+    - Commands used to remove:
+        - Stop-Process -Name "invoice" -Force or Stop-Process -Id 5920 -Force 
+- Attackers ip was blocked at the firewall level
+- Original file was removed from downloads folder
+    - Remove-Item "C:\Users\user1\Downloads\invoice.exe"
+- The registry key created by adversary was identified and removed:
+![registry key](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/reg_cont.png)
+
+## Eradication
+
+Following containment, system was checked for further persistence mechanisms:
+- Scheduled tasks reviewed - no malicious entries found
+![scheduled task](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/sched_task.png)
+
+- Startup items were reviewed - no additional malicious entries beyond the removed registry run key
+![start up](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/startup.png)
+
+- Running Services were reviewed - no malicious services identified
+![Services](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/service.png)
+
+- User accounts reviewed - no unauthorized accounts created
+- System was considered clean and the incident was closed
+
+No evidence of lateral movement or data exfiltration was found
+
+## Lessons Learned
+- Check every machine for activated Windows Defender
+- Develop a better system for phishing email detection 
+- Develop a system for Registry Run Keys startup folder monitoring
+- Possible usage of Anti-Virus 
+
+## MITRE ATT&CK mapping
+- T1566.001 - Spearphishing Attachment
+- T1204.002 - User Execution: Malicious File
+- T1547.001 - Registry Run Keys/Startup Folder
+- T1068 - Exploitation for Privilege Escalation
+- T1055 - Process Injection
+
 ## Author
 Bogdan Ermakov
