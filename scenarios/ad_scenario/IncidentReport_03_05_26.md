@@ -2,7 +2,7 @@
 - Windows 11 clock experienced drift during the incident, timestamps have been normalized
 ## Initial Detection
 At 16:06 UTC a unusual amount of alerts was detected on our windows11_client machine. With top 3 alerts mapped to MITRE ATT&CK of Lateral Tool Transfer, DLL Search Order Hijacking and DLL Side-Loading
-![Wazuh Dashboard](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/1602_wazuhdashbaord.png)
+![Wazuh Dashboard](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/1602_wazuhdashboard.png)
 After investigating Lateral Tool Transfer alerts, we could witness a multiple firing of the rule 92217 with first instance being noticed at 14:11:40.480, or the "Executable dropped in Windows root folder" which could hint towards malicious executable, insufficient evidence to come to a conclusion yet. 
 ![lateral tool transfer](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/rule92217.png)
 ![file drop](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/drop.png)
@@ -19,7 +19,7 @@ this hints towards multiple privilege escalation attempts and confirms that our 
 Up until 14:42:19 multiple attempts of privilege escalation were made, and adversary started attempting creating persistence
 at 14:49:45 an attempt at creating a scheduled task was made, but it was unsuccessful
 at 14:50:46 adversary attempted adding a Value to a registry key, the operation was successful, possibly creating persistence on our System
-![event viewer](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/event_viewer_pers.png)
+![event viewer](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/event_viever_pers.png)
 As we can see reg.exe was used for creating a run key, which maps to T1547.001. It was created under user1, so no admin rights were needed for HKCU
 
 ## Author
