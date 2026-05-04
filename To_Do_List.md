@@ -9,11 +9,11 @@
 - [x] Install Wazuh on Ubuntu server
 - [x] Install sysmon on Win11 VM
 - [x] Create an Network diagram
-- [ ] Run and document scenarios
+- [x] Run and document scenarios
     - [x] Bruteforce on SSH or RDP
-    - [ ] Run malware sample on Win11 machine
+    - [x] Run malware sample on Win11 machine
     - [x] Run Nmap scans
-    - [ ] Create Suspicious scheduled task
+    - [x] Create Suspicious scheduled task
 
 - [x] Create and Setup AD
-- [ ] Do scenarios with AD
+- [x] Do scenarios with AD
