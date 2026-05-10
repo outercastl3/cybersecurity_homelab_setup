@@ -30,7 +30,7 @@ As we have another user, we could be able to do further enumeration and have att
 We check if credentials we obtained are correct with help of netexec
 ![netexec output](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/netexec.png)
 Also svc_legacy can help us run BloodHound to map attack paths and possibility to access resources svc_legacy is privileged to.
-Biggest impact wouldve been successful Kerberoasting and hold of svc_backup credentials, as it holds Domain Administrator rights
+Biggest impact would've been successful Kerberoasting and hold of svc_backup credentials, as it holds Domain Administrator rights
 
 ## Outcome
 Possible further attacks vectors:

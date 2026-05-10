@@ -30,7 +30,7 @@ Following commands were used to simulate the configuration of the environment:
 - i will run an nmap scan to gather services that are up and their version, along with OS its running etc.
     - nmap -sV -sS -A -p- 192.168.1.10
 ![Nmap Result](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/nmap_scan.png)
-- Information we gathered:
+- Information we gathered:`
     - we have a hardened SMB2 with signing enabled and required running on port 445
         - SMB relay attacks are not viable due to signing requierements
     - couple of internal Windows services
@@ -61,12 +61,12 @@ Following commands were used to simulate the configuration of the environment:
 - What we found:
     - current user logged in LAB\user1 (standard domain user)
     - Machine is called TESTNAME1 joined to LAB domain
-    - and current user only has standard priviledges, no administrative rights
+    - and current user only has standard privileges, no administrative rights
 
 ## Persistence (TA0003)
 - we try to create a scheduled task with our payload file
 ![schtask](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/schtask.png)
-- as expected we get an error, we dont have the priveledges
+- as expected we get an error, we dont have the priveleges
 - we try to run registry run key, which could run from user level
 ![registry run key](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/ad_scenario/screenshots/registry.png)
 - Confirmed entry present alongside legitimate OneDrive startup entry
