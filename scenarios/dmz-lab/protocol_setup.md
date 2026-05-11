@@ -26,7 +26,7 @@ We also create a lab-lan rule which allows us to access DMZ from lab-lan machine
 ![lablan rule](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/dmz-lab/screenshots/lablan_rule.png)
 Due to pfSense quirks, i had to create a small script, which reloads all services, and brings the network interface up at /usr/local/etc/rc.d/dmz_up.sh
 ![script](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/dmz-lab/screenshots/script.png)
-rc.reload_all is used in script to force complete restart of all functions in pfSense equivalent to applying changes in the WebGUI, Delay is necessar as rc.d scripts run immediately at boot before network interfaces are fully initialized, causing the command to fail without it
+rc.reload_all is used in script to force complete restart of all functions in pfSense equivalent to applying changes in the WebGUI, Delay is necessary as rc.d scripts run immediately at boot before network interfaces are fully initialized, causing the command to fail without it
 For our DMZ to have internet connection, we also need to change Outbound NAT Mode from Automatic to Hybrid and add new NAT rule for WAN interface
 ![nat rule](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/dmz-lab/screenshots/wan_nat_rule.png)
 Now we need to point our dmz towards our pfSense gateway, i will be using systemd-networkd, by modifing the /etc/systemd/network/10-enp1s0.network
@@ -36,7 +36,10 @@ Then we apply by:
 - sudo systemctl restart systemd-networkd
 Afterwards we check if it works
 ![ipa dmz](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/dmz-lab/screenshots/ipa_dmz.png)
-because of Domain Name Resolve issues, i temporarily decided to use 8.8.8.8 as my workaround, through resolv.conf
+To have domain name resolution on the Debian DMZ, we point it towards our windows server with help of resolv.conf by adding
+```bash
+echo "nameserver 192.168.1.40" >> /etc/resolv.conf
+```
 Now we can start getting necessary packages for the JuiceShop and DVWA
 Through the bash script i created install.sh, should be ran as root
 Now we create project directory structure and necessary configs
@@ -58,11 +61,20 @@ Our services are up
 ![docker services](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/dmz-lab/screenshots/services.png)
 Now as last we add another firewall rule, to allow traffic on port 80 for 192.168.20.10, so we can simulate users accessing our web-services
 ![lan rule](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/dmz-lab/screenshots/lan_rule2.png)
+Our setup is finished and we can test if the web-applications are working as expected
+For this scenario i will be using Windows Server as my main domain name resolver, so i have to point Kali machine towards my Windows Server as well, by running:
+```bash
+echo "nameserver 192.168.1.40" >> /etc/resolv.conf
+```
+Now from Kali machine we test if the web-applications are accessible
+![dvwa](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/dmz-lab/screenshots/dvwa.png)
+![juiceshop](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/dmz-lab/screenshots/juiceshop.png)
+Both web-services are accessible and ready to be used
+Last preparations would be deploying a wazuh agent and forwarding logs towards our Wazuh Manager
 
 ## Temporary workarounds
 - pfSense OPT1 interface not coming up on boot -> rc.d script fix
 - MySQL 8 incompatibility with DVWA -> downgrade to 5.7
-- DNS resolution via /etc/hosts as temporary workaround
 
 ## Author
 Bogdan Ermakov
