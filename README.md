@@ -45,7 +45,7 @@ The goal is to bridge defensive monitoring (Blue Team) with attack simulation (R
 
 
 ## Network Diagram
-![Network Diagram](https://outercastl3.github.io/cybersecurity_homelab_setup/Network_DiagramV2.png)
+![Network Diagram](https://outercastl3.github.io/cybersecurity_homelab_setup/Network_DiagramV3.png)
 
 # Author 
 Bogdan Ermakov
