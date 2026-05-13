@@ -66,12 +66,23 @@ For this scenario i will be using Windows Server as my main domain name resolver
 ```bash
 echo "nameserver 192.168.1.40" >> /etc/resolv.conf
 ```
+And we add ip to domain DNS Server Resource Record on Windows Domain Controller
+```powershell
+Add-DnsServerResourceRecordA -ZoneName "lab.local" -Name "dvwa" -IPv4Address "192.168.20.10"
+Add-DnsServerResourceRecordA -ZoneName "lab.local" -Name "juiceshop" -IPv4Address "192.168.20.10"
+```
 Now from Kali machine we test if the web-applications are accessible
 ![dvwa](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/dmz-lab/screenshots/dvwa.png)
 ![juiceshop](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/dmz-lab/screenshots/juiceshop.png)
 Both web-services are accessible and ready to be used
 Last preparations would be deploying a wazuh agent and forwarding logs towards our Wazuh Manager
-
+We deploy the Agent based on the instructions from the Wazuh
+```bash
+wget https://packages.wazuh.com/4.x/apt/pool/main/w/wazuh-agent/wazuh-agent_4.14.3-1_amd64.deb && sudo WAZUH_MANAGER='192.168.1.20' dpkg -i
+./wazuh-agent_4.14.3-1_amd64.deb
+```
+and we check if installation worked in Endpoints
+![wazuh dmz](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/dmz-lab/screenshots/wazuh_dmz.png)
 ## Temporary workarounds
 - pfSense OPT1 interface not coming up on boot -> rc.d script fix
 - MySQL 8 incompatibility with DVWA -> downgrade to 5.7
