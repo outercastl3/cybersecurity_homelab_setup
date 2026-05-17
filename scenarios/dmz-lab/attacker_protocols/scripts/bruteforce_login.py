@@ -31,13 +31,13 @@ def argument_parse():
     pars.add_argument(
             "--threads",
             type=int,
-            default=4
+            default=4,
             help="The Number of Threads"
             )
 
     pars.add_argument(
             "-v", "--verbose",
-            action"store_true",
+            action="store_true",
             help="Verbose output"
             )
     return pars.parse_args()
