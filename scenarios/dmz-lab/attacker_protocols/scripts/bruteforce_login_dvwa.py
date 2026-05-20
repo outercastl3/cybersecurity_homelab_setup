@@ -87,7 +87,7 @@ def brute_force(username_file, password_file, num_threads, url, verbose):
     try:
         with open(password_file, "r") as f:
             passwords = f.readlines()
-            chunk_size = len(passwords) // num_threads)
+            chunk_size = max(1, len(passwords) // num_threads))
             chunks = [passwords[i:i + chunk_size] for i in range(0, len(passwords), chunk_size)]
 
         with open(username_file, "r") as f:
