@@ -17,14 +17,15 @@ func parseUrl(url string) string {
 func sendRequest(url string) {
 	request, err := http.Get(url)
 	if err != nil {
-		fmt.Println("Error sending the request %s: %s",url, err)
+		fmt.Printf("Error sending the request %s: %s\n",url, err)
+		return
 	}
 	if request.StatusCode == 200 {
-		fmt.Println("Directory %s exists and is accessible", url)
+		fmt.Printf("Directory %s exists and is accessible\n", url)
 	} else if request.StatusCode == 404 {
-		fmt.Println("Directory %s Not Found", url)
+		fmt.Printf("Directory %s Not Found\n", url)
 	} else if request.StatusCode == 403 {
-		fmt.Println("Directory %s exists but is not accessible", url)
+		fmt.Printf("Directory %s exists but is not accessible\n", url)
 	}
 
 }
