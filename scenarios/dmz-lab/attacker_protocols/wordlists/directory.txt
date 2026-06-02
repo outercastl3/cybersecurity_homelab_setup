@@ -18,3 +18,13 @@ src
 tmp
 temp
 old
+login.php
+setup.php
+config.inc.php
+dvwa
+vulnerabilities
+instructions.php
+phpinfo.php
+logout.php
+security.php
+about.php
