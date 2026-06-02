@@ -40,7 +40,7 @@ We start by trying to create an error to confirm that Input is not sanitized
 ```sql
 '
 ```
-![SQLIv1](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/dmz-lab/attacker_protocols/screenshots/first_sql.png)
+![SQLIv1](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/dmz-lab/attacker_protocols/screenshots/first_sqli.png)
 We config that the input data will not be sanitized, so we try several different ones:
 - dump all users
 ```sql
