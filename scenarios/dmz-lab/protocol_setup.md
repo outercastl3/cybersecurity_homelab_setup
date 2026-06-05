@@ -83,6 +83,20 @@ wget https://packages.wazuh.com/4.x/apt/pool/main/w/wazuh-agent/wazuh-agent_4.14
 ```
 and we check if installation worked in Endpoints
 ![wazuh dmz](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/dmz-lab/screenshots/wazuh_dmz.png)
+Docker doesnt automatically forwards logs towards Wazuh Agent, so we need to manually where we injest the Docker created log into wazuh
+First we need to find the Log path by running command:
+```bash
+sudo docker inspect <container_name> | grep LogPath
+```
+afterwards we change the ossec.conf of Wazuh Agent and add this log as our another source of logs via:
+```xml
+<localfile>
+    <log_format>json</log_format>
+    <location>/path/to/log</location>
+</localfile>
+```
+Repeat the same with juiceshop
+
 ## Temporary workarounds
 - pfSense OPT1 interface not coming up on boot -> rc.d script fix
 - MySQL 8 incompatibility with DVWA -> downgrade to 5.7
