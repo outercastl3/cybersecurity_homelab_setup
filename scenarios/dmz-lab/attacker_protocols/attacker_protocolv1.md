@@ -106,8 +106,8 @@ We can see a succesful RCE
 
 
 ## Mitre ATT&CK Mapping
-- T1423 - Network Service Scanning
-- T1595.003 + T1420 - Wordlist scanning + File and Directory Discovery
+- T1046 - Network Service Scanning
+- T1595.003 + T1083 - Wordlist scanning + File and Directory Discovery
 - T1110 - Brute Force
 - T1190 - Exploit Public-Facing Application
 - T1210 - Exploitation of Remote Services
