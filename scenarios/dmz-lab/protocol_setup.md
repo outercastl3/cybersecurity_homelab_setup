@@ -84,19 +84,28 @@ wget https://packages.wazuh.com/4.x/apt/pool/main/w/wazuh-agent/wazuh-agent_4.14
 and we check if installation worked in Endpoints
 ![wazuh dmz](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/dmz-lab/screenshots/wazuh_dmz.png)
 Docker doesnt automatically forwards logs towards Wazuh Agent, so we need to manually where we injest the Docker created log into wazuh
-First we need to find the Log path by running command:
+As Docker logs are not directly analyzed by Wazuh, we gonna do a pipe, where we translate the Logs into plaintext and inject them into the Wazuh
+
 ```bash
-sudo docker inspect <container_name> | grep LogPath
+docker logs -f nginx-proxy 2>&1 | while read line; do echo "$line" >> /var/log/dvwa_access.log; done &
 ```
-afterwards we change the ossec.conf of Wazuh Agent and add this log as our another source of logs via:
+and add the file to be monitored in ossec.conf
+
 ```xml
 <localfile>
-    <log_format>json</log_format>
-    <location>/path/to/log</location>
+    <log_format>syslog</log_format>
+    <location>/var/log/dvwa_access.log</location>
 </localfile>
 ```
-Repeat the same with juiceshop
 
+Repeat the same with juiceshop
+We also add nginx logs, because those are the ones capturing all the HTTP traffic including brute force requests, which are a part of my scenario
+Now we run a small test, to see if the logs are being injected, by checking raw logs created by wazuh directly 
+```bash
+tail -f /var/ossec/logs/ossec.log | grep dmz
+```
+On the dmz machine, and created fake traffic from our kali machine or in another terminal
+![Log forwarding test](https://outercastl3.github.io/cybersecurity_homelab_setup/scenarios/dmz-lab/screenshots/log_forwarding_test.png)
 ## Temporary workarounds
 - pfSense OPT1 interface not coming up on boot -> rc.d script fix
 - MySQL 8 incompatibility with DVWA -> downgrade to 5.7
