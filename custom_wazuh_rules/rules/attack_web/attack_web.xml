@@ -19,7 +19,7 @@
 
   <rule id="10009" level="13">
     <if_sid>31101</if_sid>
-    <url_match>&&|%26%26|;|%3B|\|%7C</url_match>
+    <regex>&&|%26%26|;|%3B|\|%7C</regex>
     <description>Web Attack: Command injection attempt detected in request</description>
     <mitre>
       <id>T1059</id>
@@ -29,7 +29,7 @@
   <rule id="10010" level="8">
     <if_sid>31101</if_sid>
     <match>GET /</match>
-    <url_match>/admin|/.git|/.env|/config|/backup</url_match>
+    <regex>/admin|/.git|/.env|/config|/backup</regex>
     <description>Web Attack: Directory enumeration attempt detected</description>
     <mitre>
       <id>T1083</id>
