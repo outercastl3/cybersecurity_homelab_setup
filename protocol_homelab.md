@@ -1,10 +1,12 @@
 # Homelab Setup Protocol
 works as my detailed steps description and a small instruction for future reference
 
-## Setup description
-- Windows 11 with a localuser setup
-- Ubuntu Server with apache and wazuh
-- OpenBSD 7.8 setup with pf files as main firewall
+# Overview
+- Build a segmented homelab using KVM/virt-manager after migrating from initial hardware failure
+- pfSense(replacing OpenBSD) as perimeter firewall, Ubuntu Server running Wazuh SIEM, Windows 11 client, Kali Linux for attack simulation
+- Configured log forwarding pipeline: pfSense -> syslog-ng(reformatting) -> Wazuh Manager
+- Installed Sysmon with SwiftOnSecurity config for enhanced Windows telemetry
+- Designed network to allow both external (NAT/WAN) and internal (LAN) attack simulation angles
 
 ### OpenBSD Setup (09.03.2026) - Replaced, kept for reference
 - Install OpenBSD and setup a singular root user
