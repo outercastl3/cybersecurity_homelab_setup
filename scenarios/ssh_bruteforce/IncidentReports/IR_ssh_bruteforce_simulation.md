@@ -1,5 +1,12 @@
 # Incident Report of SSH Brute Force attempt on 08.04.2026
 
+# Overview
+- Detected and responded to real internal SSH brute-force attack against Ubuntu server, correlating Wazuh alerts with a custom parser
+- Followed SANS IR framework explicitly: Identification -> Containment -> Eradication
+- Contained via firewall block (ufw) and active session termination (loginctl), while preserving evidence
+- Discovered adversary had created a new unauthorized user account during the compromise window; disabled compromised and rogue accounts
+- Root-cuased a timestamp normalization issue (Ubuntu server clock offset) that had to be corrected during analysis
+
 At 20:09:48, a network scan was detected from 192.168.1.30 targeting our internal Ubuntu Server 192.168.1.20 using Nmap.  
 The Ubuntu system was configured in UTC, resulting in a two-hour offset from other systems. All timestamps in this report have been normalized to a common timeline.  
 

@@ -1,5 +1,11 @@
 # Scenarios SSH BruteForce protocol
 
+# Overview
+- Simulated internal SSH brute-force attack using a self-written Paramiko-based Python script with shortened rockyou wordlist
+- Validated detection via Wazuh: identified specific rule IDs for failed logons and multi-failed-logon severity escalation
+- Designed an automated response concept: Wazuh active-response trigger -> auto IP-ban via pfSense
+- Documented real infrastructure limitation: pfSense's web UI doesn't support the custom pfctl automation attempted; noted REST API as the enterprise-realistic fix
+
 ## First Preparations and steps
 - Firstly i have written a small script for a simulation
 - its based on Paramiko python library
